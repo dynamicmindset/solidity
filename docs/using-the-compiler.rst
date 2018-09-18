@@ -76,16 +76,23 @@ Or if using :ref:`JSON input <compiler-api>`, with the ``evmVersion`` key:
 Target options
 --------------
 
-- homestead
-- tangerineWhistle
-- spuriousDragon
-- byzantium (**default**)
-- constantinople
+Below is a list of target EVM versions and the compiler-relevant changes introduced 
+at each version. Backward compatibility is not guaranteed between each version.
 
-.. note::
-
-  Backward compatibility might exist between different EVM versions, but it is
-  up to the developer to figure out what they are.
+- ``homestead``
+- ``tangerineWhistle``
+   - gas cost for access to other accounts increased, relevant for gas estimation and the optimizer.
+   - all gas sent by default for external calls, previously you had to calculate manually to not send too much.
+- ``spuriousDragon``
+   - gas cost for the ``exp`` opcode increased, relevant for gas estimation and the optimizer.
+- ``byzantium`` (**default**)
+   - opcodes ``returndatacopy``, ``returndatasize`` and ``staticcall`` are available in assembly.
+   - the ``staticcall`` opcode is used when calling view or pure functions, which prevents the functions from modifying state at the EVM level, i.e., even applies when you use invalid type conversions.
+   - it is possible to access dynamic data returned from function calls.
+   - ``revert`` opcode introduced.
+- ``constantinople`` (still in progress)
+   - opcodes ``shl``, ``shr`` and ``sar`` are available in assembly.
+   - shifting operators use shifting opcodes
 
 .. _compiler-api:
 
