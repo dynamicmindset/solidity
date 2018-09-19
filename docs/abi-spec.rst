@@ -80,8 +80,11 @@ It is possible to form tuples of tuples, arrays of tuples and so on.  It is also
 
 Mapping Solidity to ABI types
 -----------------------------
-The following table shows on the left column Solidity types that are not part of the ABI,
-and on the right column the ABI type that they map to.
+
+Solidity supports all the types presented above with the same names with the
+exception of tuples. On the other hand, some Solidity types are not supported
+by the ABI.  The following table shows on the left column Solidity types that
+are not part of the ABI, and on the right column the ABI type that they map to.
 
 +-------------------------------+-----------------------------------------------------------------------------+
 |      Solidity                 |                                           ABI                               |
